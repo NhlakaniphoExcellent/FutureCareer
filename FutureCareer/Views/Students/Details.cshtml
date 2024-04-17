@@ -1,0 +1,120 @@
+﻿@model FutureCareer.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<br />
+<h1>Details</h1>
+<br />
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <span class="fw-bold">@Html.DisplayNameFor(model => model.StudentID)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-lg">@Html.DisplayFor(model => model.StudentID)</span>
+        </dd>
+        <dt class="col-sm-2">
+            <span class="fw-bold">@Html.DisplayNameFor(model => model.Name)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-lg">@Html.DisplayFor(model => model.Name)</span>
+        </dd>
+        <dt class="col-sm-2">
+            <span class="fw-bold">@Html.DisplayNameFor(model => model.Surname)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-lg">@Html.DisplayFor(model => model.Surname)</span>
+        </dd>
+        <dt class="col-sm-2">
+            <span class="fw-bold">@Html.DisplayNameFor(model => model.Email)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-lg">@Html.DisplayFor(model => model.Email)</span>
+        </dd>
+        <dt class="col-sm-2">
+            <span class="fw-bold">@Html.DisplayNameFor(model => model.Contact)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-lg">@Html.DisplayFor(model => model.Contact)</span>
+        </dd>
+        <dt class="col-sm-2">
+            <span class="fw-bold">@Html.DisplayNameFor(model => model.EnrollmentStatus)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-lg">
+                @if (Model.EnrollmentStatus)
+                {
+                    <text>Active</text>
+                }
+                else
+                {
+                    <text>Inactive</text>
+                }
+            </span>
+        </dd>
+    </dl>
+</div>
+<br />
+<br />
+<div>
+    <a href="#" class="btn btn-primary" id="downloadBtn">Download HTML</a>
+    <br />
+    <br />
+    <a asp-action="Edit" asp-route-id="@Model?.StudentID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    <script>
+        // Function to generate HTML content for student details
+        // Function to generate HTML content for student details
+        function generateStudentHtml() {
+            var enrollmentStatus = '@(Model.EnrollmentStatus ? "Active" : "Inactive")'; // Ensure the Razor syntax is correctly interpreted
+
+            var studentHtml = '<h4>Student</h4>';
+            studentHtml += '<dl class="row">';
+            studentHtml += '<dt class="col-sm-2">Student ID</dt>';
+            studentHtml += '<dd class="col-sm-10">@Model.StudentID</dd>';
+            studentHtml += '<dt class="col-sm-2">Name</dt>';
+            studentHtml += '<dd class="col-sm-10">@Model.Name</dd>';
+            studentHtml += '<dt class="col-sm-2">Surname</dt>';
+            studentHtml += '<dd class="col-sm-10">@Model.Surname</dd>';
+            studentHtml += '<dt class="col-sm-2">Email</dt>';
+            studentHtml += '<dd class="col-sm-10">@Model.Email</dd>';
+            studentHtml += '<dt class="col-sm-2">Contact</dt>';
+            studentHtml += '<dd class="col-sm-10">@Model.Contact</dd>';
+            studentHtml += '<dt class="col-sm-2">Enrollment Status</dt>';
+            studentHtml += '<dd class="col-sm-10">' + enrollmentStatus + '</dd>'; // Insert enrollmentStatus variable here
+            studentHtml += '</dl>';
+
+            return studentHtml;
+        }
+
+
+        // Function to download HTML content
+        function downloadHtml(content, filename) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // Handle click event for download button
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            var studentHtml = generateStudentHtml(); // Generate HTML content for student details
+            var filename = 'student_details.html'; // Filename for downloaded file
+
+            downloadHtml(studentHtml, filename);
+        });
+    </script>
+}

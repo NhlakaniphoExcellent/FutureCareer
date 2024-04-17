@@ -1,0 +1,49 @@
+﻿@model FutureCareer.Models.Student
+
+@{
+    ViewData["Title"] = "Select";
+}
+<br />
+<br />
+<h1>Selected Student Details</h1>
+<br />
+<br />
+<table class="table table-bordered table-bold">
+    <thead>
+        <tr>
+            <th><b>@Html.DisplayNameFor(model => model.StudentID)</b></th>
+            <th><b>@Html.DisplayNameFor(model => model.Name)</b></th>
+            <th><b>@Html.DisplayNameFor(model => model.Surname)</b></th>
+            <th><b>@Html.DisplayNameFor(model => model.Email)</b></th>
+            <th><b>@Html.DisplayNameFor(model => model.Contact)</b></th>
+            <th><b>Enrollment Status</b></th>
+            <th><b>Actions</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(model => model.StudentID)</td>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+            <td>@Html.DisplayFor(model => model.Surname)</td>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+            <td>@Html.DisplayFor(model => model.Contact)</td>
+            <td>
+                @if (Model.EnrollmentStatus)
+                {
+                    <text>Active</text>
+                }
+                else
+                {
+                    <text>Inactive</text>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@Model.StudentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@Model.StudentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@Model.StudentID">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a asp-action="Index">Back to List</a>

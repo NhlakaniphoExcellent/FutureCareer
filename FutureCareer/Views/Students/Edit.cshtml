@@ -1,0 +1,62 @@
+﻿@model FutureCareer.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<br />
+<br />
+<h1>Update</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*  <input type="hidden" asp-for="StudentID" /> *@
+            <div class="mb-3">
+                <label for="StudentID" class="form-label fw-bold">StudentID</label>
+                <input asp-for="StudentID" type="text" class="form-control" readonly>
+                <span asp-validation-for="StudentID" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="Name" class="form-label fw-bold">Name</label>
+                <input asp-for="Name" type="text" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="Surname" class="form-label fw-bold">Surname</label>
+                <input asp-for="Surname" type="text" class="form-control">
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="Email" class="form-label fw-bold">Email</label>
+                <input asp-for="Email" type="email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="Contact" class="form-label fw-bold">Contact</label>
+                <input asp-for="Contact" type="number" class="form-control">
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label fw-bold">
+                    <input class="form-check-input" asp-for="EnrollmentStatus" /> @Html.DisplayNameFor(model => model.EnrollmentStatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

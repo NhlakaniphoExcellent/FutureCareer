@@ -1,0 +1,149 @@
+﻿@model IEnumerable<FutureCareer.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The University of FutureCareerville</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: black;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .table-container {
+            max-height: 300px; /* Set the maximum height */
+            overflow-y: auto; /* Enable vertical scrollbar */
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .table th, .table td {
+                padding: 10px;
+                border: 1px solid #ccc;
+            }
+
+            .table th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .table td {
+                text-align: center;
+            }
+
+    </style>
+</head>
+<body>
+
+    <h1>VIEW ALL STUDENTS</h1>
+
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form class="d-flex" action="@Url.Action("Index", "Students")" method="get">
+                <input name="searchString" class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-secondary mx-2" type="submit">Search Active Students</button>
+                <a class="btn btn-secondary" href="@Url.Action("Index", "Students")">Back to Full List</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Enrollment Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.StudentID</td>
+                        <td>@item.Name</td>
+                        <td>@item.Surname</td>
+                        <td>@item.Email</td>
+                        <td>@item.Contact</td>
+
+                        <td>
+                            @if (item.EnrollmentStatus)
+                            {
+                                <text>Active</text>
+                            }
+                            else
+                            {
+                                <text>Inactive</text>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Select" asp-route-id="@item.StudentID">--Select--</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
