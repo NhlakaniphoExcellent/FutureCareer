@@ -1,6 +1,6 @@
 # FutureCareer ( School assignment )
 
-This is a full-stack scalable web application hosted on Microsoft Azure for Futurville University. This app manages and stores student information by harvesting all the CRUD ( RESTful API's ) operations.
+This is a full-stack scalable web application hosted on Microsoft Azure for Futurville University. This app manages and stores student information by Using HTTP Methods for RESTful Services.
 
 ## Technologies Used
 * C#
