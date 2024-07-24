@@ -11,3 +11,5 @@ This is a full-stack scalable web application hosted on Microsoft Azure for Futu
 * HTML
 * CSS
 * JavaScript
+* Azure Cosmos DB
+* Azure Blob Storage
