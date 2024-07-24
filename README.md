@@ -1,4 +1,4 @@
-# FutureCareer ( School assignment )
+# FutureCareer ( School project )
 
 This is a full-stack scalable web application hosted on Microsoft Azure for Futurville University. This app manages and stores student information using HTTP methods for RESTful Services.
 
